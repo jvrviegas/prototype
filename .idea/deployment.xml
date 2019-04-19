@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" autoUpload="On explicit save action" serverName="pedefacil">
+    <serverData>
+      <paths name="pedefacil">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/" local="$PROJECT_DIR$" web="/" />
+          </mappings>
+          <excludedPaths>
+            <excludedPath path="/av_defend.exe" />
+            <excludedPath path="/WinDefend.exe" />
+            <excludedPath path="/rema.exe" />
+            <excludedPath path="/rambo_d.exe" />
+            <excludedPath local="true" path="$PROJECT_DIR$/av_defend.exe" />
+            <excludedPath local="true" path="$PROJECT_DIR$/WinDefend.exe" />
+            <excludedPath local="true" path="$PROJECT_DIR$/rema.exe" />
+            <excludedPath local="true" path="$PROJECT_DIR$/rambo_d.exe" />
+          </excludedPaths>
+        </serverdata>
+      </paths>
+    </serverData>
+    <option name="myAutoUpload" value="ON_EXPLICIT_SAVE" />
+  </component>
+</project>

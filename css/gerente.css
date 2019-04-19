@@ -4308,9 +4308,22 @@ a.morebtn {
     display: block;
 }
 
+.lista_pedidos{
+    background-color: #FFF;
+    margin-top: 15px;
+    padding: 5px;
+    border: 2px solid #FFF;
+    border-radius: 10px;
+    box-shadow: 2px 2px 2px 1px grey;
+}
+
 .pedidos {
     width: 400px;
     height: 100%;
     margin: 0 auto 0 auto;
     background-color: #D7D7D7;
+}
+
+#tabela_pedidos tr td{
+    white-space: pre-wrap;
 }

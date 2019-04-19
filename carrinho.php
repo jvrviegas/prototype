@@ -25,7 +25,7 @@ class Consulta{
     public function consultaProduto($cod){
         $stmt = $this->pdo->prepare("SELECT * FROM tbl_produtos WHERE cod = '$cod'");
         $stmt->bindValue(':cod', $cod);
-        $run = $stmt->execute();
+        $stmt->execute();
         $result = array_map("utf8_encode", $stmt->fetch(PDO::FETCH_ASSOC));
         return $result;
     }
@@ -51,9 +51,9 @@ class Consulta{
 }
 
 /* INICIAR A MONTAGEM DO CARRINHO AQUI */
-if(isset($_POST) && isset($_POST['id'])){
+if(isset($_POST) && isset($_POST['lista_cod'])){
     /* Transforma os ID's em um array */
-    $codProduto = explode(',' ,$_POST['id']);
+    $codProduto = explode(',' ,$_POST['lista_cod']);
     $produtos = array();
     $retorno = new Consulta();
     $total = 0;
@@ -61,21 +61,22 @@ if(isset($_POST) && isset($_POST['id'])){
     foreach ($codProduto as $key => $value) {
         array_push($produtos, $retorno->consultaProduto($value)) ;
     }
-    foreach ($produtos as $value){
-        $total += $value['preco'];
-        $html .= "<tr>";
-        $html .=    "<td>".$value['produto']."</td>";
-        $html .=    "<td>".$value['preco']."</td>";
-        $html .=    "<td>";
-        $html .=    "<div>";
-        $html .=        "<button type='button' id='arrowDown' class='button numberArrow' onclick='this.parentNode.querySelector(\"[type=number]\").stepDown();'> - </button>";
-        $html .=        "<input type='number' name='number' min='1' max='100' value='1' readonly>";
-        $html .=        "<button type='button' id='arrowUp' class='button numberArrow' onclick='this.parentNode.querySelector(\"[type=number]\").stepUp();'> + </button>";
-        $html .=    "</div>";
-        $html .=    "</td>";
-        $html .=    "<td id='".$value['produto']."Total'>".$value['preco']."</td>";
-        $html .= "</tr>";
-    }
-    echo json_encode($html);
+    echo json_encode($produtos);
+//    foreach ($produtos as $value){
+//        $total += $value['preco'];
+//        $html .= "<tr>";
+//        $html .=    "<td>".$value['produto']."</td>";
+//        $html .=    "<td>".$value['preco']."</td>";
+//        $html .=    "<td>";
+//        $html .=    "<div>";
+//        $html .=        "<button type='button' id='arrowDown' class='button numberArrow' onclick='this.parentNode.querySelector(\"[type=number]\").stepDown();'> - </button>";
+//        $html .=        "<input type='number' name='number' min='1' max='100' value='1' readonly>";
+//        $html .=        "<button type='button' id='arrowUp' class='button numberArrow' onclick='this.parentNode.querySelector(\"[type=number]\").stepUp();'> + </button>";
+//        $html .=    "</div>";
+//        $html .=    "</td>";
+//        $html .=    "<td id='".$value['produto']."Total'>".$value['preco']."</td>";
+//        $html .= "</tr>";
+//    }
+//    echo json_encode($html);
 
 }

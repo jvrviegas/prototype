@@ -21,7 +21,7 @@ foreach ($bebidas as $produto) {
                     </div>
                 </div>
                 <div class="pr-right">
-                    <a class="itemCarrinho" id="<?php echo $produto['cod'];?>" >Adicionar</a>
+                    <a class="itemCarrinhoBebida" id="<?php echo $produto['cod'];?>" >Adicionar</a>
                     <div class="clearfix"></div>
                 </div>
                 </li>

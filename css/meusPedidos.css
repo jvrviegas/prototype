@@ -4341,3 +4341,12 @@ a.morebtn {
     border-radius: 10px;
     box-shadow: 2px 2px 2px 1px grey;
 }
+
+#tabela_pedidos_aberto tr td{
+    white-space: pre-wrap;
+}
+
+#btn_encerrar {
+    margin-top: -40px;
+    float: right;
+}

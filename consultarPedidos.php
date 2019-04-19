@@ -3,12 +3,11 @@
 error_reporting(E_ALL);
 ini_set('display_errors', true);
 include "pedidos.php";
-include "carrinho.php";
 
-//if (isset($_POST) && $_POST['id_usuario']) {
-//    $id_usuario = $_POST['id_usuario'];
+if (isset($_POST) && $_POST['id_usuario']) {
+    $id_usuario = $_POST['id_usuario'];
     $consulta = new Pedidos();
-    $pedidos = $consulta->consultarPedidos(1);
+    $pedidos = $consulta->consultarPedidos($id_usuario);
     $carrinho = new Consulta();
     $pedido_aberto = Array();
     $pedidos_encerrados = Array();
@@ -16,20 +15,12 @@ include "carrinho.php";
     $teste2 = Array();
     foreach ($pedidos as $value) {
         if ($value['status_pedido'] === "Em aberto") {
-            $lista_ids = explode(",", $value['lista_cod']);
-            array_push($pedido_aberto, $value['id_pedido']);
-            array_push($pedido_aberto, $value['status_pedido']);
-            for ($i = 0; $i < count($lista_ids); $i++) {
-                array_push($teste, $carrinho->consultaProduto($lista_ids[$i])['produto']);
-                array_push($teste, $carrinho->consultaProduto($lista_ids[$i])['preco']);
-            }
-            array_push($pedido_aberto, $teste);
+            array_push($pedido_aberto, $value);
         }
     }
+    echo json_encode($pedido_aberto);
+}
     
-//    echo "<pre>";
-//    print_r($pedido_aberto);
-//    echo json_encode($pedido_aberto);
 //
 //echo "<h2>Pedidos fechados</h2>";
 //

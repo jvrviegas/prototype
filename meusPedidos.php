@@ -1,4 +1,5 @@
 <?php
+session_start();
 $key = uniqid(md5(rand()));
 ?>
 
@@ -20,32 +21,31 @@ $key = uniqid(md5(rand()));
         <script src="js/sweetalert2.all.min.js"></script>
         <script type="text/javascript">
             jQuery(document).ready(function ($) {
-                var id_usuario = 1;
+                var id_usuario = <?php echo $_SESSION['id']; ?>;
                 var controlePedidos = new Array();
-                $("#att_pedidos").click(function () {
-                    $.ajax({
-                        url: 'consultarPedidos.php',
-                        type: 'POST',
-                        data: 'id_usuario=' + id_usuario,
-                        dataType: 'json',
-                        success: function (result) {
-                            console.log(result);
-//                            $.each(result, function (key, value) {
-//                                if (controlePedidos.indexOf(value.id_pedido) === -1) {
-//                                    $("#tbody_pedidos").append("<tr> <td id='id_pedido'>" + value.id_pedido + "</td> <td>" + value.lista_cod + "</td> <td>" + value.lista_cod + "</td> <td>" + value.status_pedido + "</td> </tr>");
-//                                    controlePedidos.push(value.id_pedido);
-//                                    console.log(result)
-//                                }
-//                            });
-                        }
-                    });
+
+                $.ajax({
+                    url: 'pedidos.php',
+                    type: 'POST',
+                    data: 'id_usuario=' + id_usuario + '&&opc=2',
+                    dataType: 'json',
+                    success: function (result) {
+                        console.log(result);
+                        var valor_total;
+                        var valor_conta = 0;
+                        $.each(result, function (key, value) {
+                            var valor_unitario = parseFloat(value.valor_unitario);
+                            valor_total = valor_unitario * value.quantidade;
+                            valor_conta += parseFloat(valor_total);
+                            $("#tbody_pedidos").append("<tr> <td>" + value.nome_produto + "</td> <td>" + valor_unitario.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}) + "</td> <td style='text-align:center;'>" + value.quantidade + "</td> <td>" + valor_total.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}) + "</td> </tr>");
+                        });
+                        $("#valor_conta").html(valor_conta.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}));
+                    }
                 });
 
-//                $("#att_pedidos").click(function (event) {
-//                    var id_usuario = 1;
-//                    console.log(id_usuario);
-//                    
-//                });
+                $("#btn_encerrar").click(function (){
+                    
+                });
 
             });
         </script>
@@ -91,28 +91,29 @@ $key = uniqid(md5(rand()));
 
         <div class="special-offers-section">
             <div class="container">
-                <button id="att_pedidos">Atualizar pedidos</button>
-                <!--INSERIR AQUI O CONTEÚDO PARA RECEBER OS PEDIDOS-->
                 <div class="lista_pedidos">
-                    <h3>Pedidos em aberto</h3>
+                    <h3>Seu pedido</h3>
                     <div id="tabela_pedidos_aberto" class="table-responsive">
                         <table id="pedidos_em_aberto" class="table"> 
                             <thead> 
                                 <tr> 
-                                    <th>ID</th> 
                                     <th>Produto</th> 
                                     <th>Valor</th> 
-                                    <th>Quantidade</th> 
+                                    <th>Quantidade</th>
+                                    <th>Total por un.</th>
                                 </tr> </thead> 
                             <tbody id="tbody_pedidos"> 
                                 <!--                                Conteúdo adicionado dinamicamente-->
                             </tbody> 
                         </table>
                     </div>
+                    <h4 style="font-weight: bold;">Valor da conta: <span id="valor_conta">0.00</span></h4>
+<!--                    <br><button id="btn_encerrar">Encerrar conta</button>-->
+                    
                 </div>
-                <div class="lista_pedidos">
+<!--                <div class="lista_pedidos">
                     <h3>Pedidos encerrados</h3>
-                </div>
+                </div>-->
             </div>
         </div>
     </div>
