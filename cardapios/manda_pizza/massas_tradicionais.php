@@ -16,11 +16,21 @@ foreach ($massas_tradicionais as $produto) {
                 <div class="pr-left">
                     <div class="item_add">
                         <span class="item_price">
-                            <h6><?php echo $produto['preco'];?></h6>
+                            <h6><?php echo "R$ " . number_format($produto['preco'], 2, ",", ".");?></h6>
                         </span>
                     </div>
                 </div>
                 <div class="pr-right">
+                    <button type='button' id='arrowDown' class='button numberArrow'
+                            onclick='this.parentNode.querySelector("[type=number]").stepDown();'>
+                        -
+                    </button>
+                    <input type='number' name='number' class='qtd_item' id='quant' min='1' max='100'
+                           value='1' readonly>
+                    <button style='margin-right: 15px;' type='button' id='arrowUp' class='button numberArrow'
+                            onclick='this.parentNode.querySelector("[type=number]").stepUp();'>
+                        +
+                    </button>
                     <a class="itemCarrinho" id="<?php echo $produto['cod'];?>" >Adicionar</a>
                     <div class="clearfix"></div>
                 </div>

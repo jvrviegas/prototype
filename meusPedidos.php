@@ -44,7 +44,13 @@ $key = uniqid(md5(rand()));
                 });
 
                 $("#btn_encerrar").click(function (){
-                    
+                    Swal({
+                        title: "Por favor, dirija-se ao caixa e apresente o código abaixo:",
+                        html: "<h2>ID: <?php echo $_SESSION['id']; ?></h2>",
+                        type: 'success',
+                        confirmButtonColor: '#3085d6',
+                        confirmButtonText: 'Ok'
+                    });
                 });
 
             });
@@ -108,7 +114,7 @@ $key = uniqid(md5(rand()));
                         </table>
                     </div>
                     <h4 style="font-weight: bold;">Valor da conta: <span id="valor_conta">0.00</span></h4>
-<!--                    <br><button id="btn_encerrar">Encerrar conta</button>-->
+                    <br><button id="btn_encerrar">Encerrar conta</button>
                     
                 </div>
 <!--                <div class="lista_pedidos">

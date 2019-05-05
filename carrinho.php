@@ -33,14 +33,16 @@ class Consulta{
     public function carregarProdutos($categoria){
         $stmt = $this->pdo->prepare("SELECT * FROM tbl_produtos WHERE categoria = '$categoria'");
         $stmt->bindValue(':categoria', $categoria);
+        $result = Array();
         $run = $stmt->execute();
         while($teste = $stmt->fetch(PDO::FETCH_ASSOC)){
-            $result[]= array_map("utf8_encode",$teste);
+            $result[] = array_map("utf8_encode",$teste);
         }
         return $result;
     }
     public function carregarTodosProdutos(){
         $stmt = $this->pdo->prepare("SELECT produto,descricao FROM tbl_produtos");
+        $result = Array();
         $run = $stmt->execute();
         while($teste = $stmt->fetch(PDO::FETCH_ASSOC)){
             $result[]= array_map("utf8_encode",$teste);

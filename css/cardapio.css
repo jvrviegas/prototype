@@ -4291,12 +4291,14 @@ a.morebtn {
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
+    font-size: 12px;
     -webkit-transition-duration: 0.4s; /* Safari */
     transition-duration: 0.4s;
     cursor: pointer;
 }
 .numberArrow {
+	width: 20px;
+	height: 25px;
     background-color: #008CBA; 
     color: white; 
     border: 2px solid #008CBA;
@@ -4331,4 +4333,9 @@ a.morebtn {
 /* a partir do momento em que o body estiver com a classe loading,  o modal aparecerá */
 #carrinho.loading .modalLoading {
     display: block;
+}
+
+.modal{
+	height: 95%;
+	overflow-y: auto;
 }

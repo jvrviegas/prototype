@@ -4189,11 +4189,12 @@ a.morebtn {
 }
 .modal-content{
     min-width: 100%;
-    max-width: 400px;
+    max-width: 1000px;
     width: auto;
     display: inline-block;
     text-align: center;
     vertical-align: middle;
+	margin-left: -200px;
 }
 .modal:before {
   content: '';
@@ -4298,6 +4299,11 @@ a.morebtn {
                 no-repeat;
 }
 
+.modal{
+	height: 95%;
+	overflow-y: auto;
+}
+
 /* enquanto estiver carregando, o scroll da página estará desativado */
 #carrinho.loading {
     overflow: hidden;   
@@ -4326,4 +4332,8 @@ a.morebtn {
 
 #tabela_pedidos tr td{
     white-space: pre-wrap;
+}
+
+#tabelaProdutos tr td{
+	white-space: pre-wrap;
 }
