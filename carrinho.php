@@ -1,7 +1,6 @@
 <?php
 include "conexao.php";
 
-session_start();
 
 function sanitizeString($str) {
     $str = preg_replace('/[áàãâä]/ui', 'a', $str);

@@ -46,8 +46,17 @@ session_start();
 
                             }
                         });
-                        Swal("Pedido encerrado com sucesso!", "success");
-                        location.reload();
+                        Swal({
+                            title: "Pedido encerrado com sucesso!",
+                            type: 'success',
+                            showCancelButton: true,
+                            confirmButtonText: 'Ok'
+                        }).then((result) => {
+                            if(result.value){
+                                location.reload();
+                            }
+                        });
+                        setInterval("location.reload()", 5000);
                     }
                 });
             });
@@ -66,7 +75,7 @@ session_start();
                         $("#tabelaProdutos").html("");
                         $.each(result, function (key, value) {
                             var id_produto = parseInt(value.cod);
-                            $("#tabelaProdutos").append("<tr> <td>" + value.nome_produto + "</td> <td>" + value.quantidade + "</td> <td>" + value.observacao + "</td> </tr>");
+                            $("#tabelaProdutos").append("<tr> <td>" + value.nome_produto + "</td> <td>" + value.quantidade + "</td> <td></td> </tr>");
                         });
                         $("#pedido").modal('show');
                         $(".modalLoading").modal('hide');
@@ -230,7 +239,7 @@ session_start();
 
             <!--Modal footer-->
             <div class="modal-footer">
-
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
             </div>
 
         </div>

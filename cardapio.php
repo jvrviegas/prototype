@@ -174,10 +174,12 @@ if (!isset($_SESSION['id']) && !isset($_SESSION['user'])) {
             });
 
             $(".btn_close").click(function () {
-                if ((controle2sabores % 2) != 0) {
+                if(controle2sabores > 2){
+                    Swal("Por favor, selecione apenas dois sabores !");
+                }
+                else if (controle2sabores < 2 && controle2sabores > 0) {
                     Swal("Por favor, selecione o segundo sabor !");
-                    console.log(controle2sabores);
-                } else if (controle2sabores % 2 == 0) {
+                } else if (controle2sabores === 2 || controle2sabores === 0) {
                     $("#pizza2sabores").modal('hide');
                 }
             });
