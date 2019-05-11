@@ -49,7 +49,8 @@ $key = uniqid(md5(rand()));
                         html: "<h2>ID: <?php echo $_SESSION['id']; ?></h2>",
                         type: 'success',
                         confirmButtonColor: '#3085d6',
-                        confirmButtonText: 'Ok'
+                        confirmButtonText: 'Ok',
+                        showCancelButton: true
                     });
                 });
 

@@ -15,7 +15,7 @@ require 'conexao.php';
 <html lang="pt-br">
 <head>
     <!-- Meta tags -->
-    <title>Pede Fácil - Seu jeito fácil de pedir</title>
+    <title>Pede Fácil</title>
     <meta name="keywords" content="Pede Fácil"/>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -33,6 +33,7 @@ require 'conexao.php';
     <script src="js/sweetalert2.all.min.js"></script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script src="https://www.googletagmanager.com/gtag/js?id=UA-132452994-1"></script>
+    <script src="js/index.js"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
 
@@ -44,66 +45,9 @@ require 'conexao.php';
 
         gtag('config', 'UA-132452994-1');
     </script>
-    <script type="text/javascript">
-        jQuery(document).ready(function ($) {
-            $("#enviaDados").click(function () {
-                var dados={
-                    usuario:$("input[name=usuario]").val(),
-                    senha:$("input[name=senha]").val()
-                }
-                 now = new Date();
-                 if (now.getHours() >= 10 && now.getHours() <= 23) {
-                     $.ajax({
-                         url: 'conexao.php',
-                         data: dados,
-                         type: "POST",
-                         dataType: 'json',
-                         success: function (result) {
-                             if(result === 1){
-                                Swal({
-                                    title: 'Insira o código de acesso:',
-                                    input: 'number',
-                                    type: 'warning',
-                                }).then((resultado) => {
-                                    if(resultado.value == 9548){
-                                        Swal({
-                                            title: 'Acesso válido',
-                                            text: 'Você será redirecionado automaticamente para a página de cardápio.',
-                                            type: 'success'
-                                        }).then((result2) => {
-                                            if(result2.value){
-                                                location.replace("cardapio.php");
-                                            }
-                                        });
-                                        setTimeout("location.replace(\"cardapio.php\")", 4000);
-                                    }
-                                    else if(resultado.value !== 9548){
-                                        Swal({
-                                            title: 'Código de acesso inválido',
-                                            html: "<h3>Por favor, dirija-se a um de nossos representates e solicite o código de acesso.</h3>",
-                                            type: 'error'
-                                        })
-                                    }
-                                });
-                            }
-                            else if(result === 0){
-                                Swal("Usuário e/ou senha incorretos!");
-                            }
-                         }
-                     });
-                 } else {
-                     Swal({
-                         title: 'Manda Pizza',
-                         html: "<h3>Estabelecimento fechado, retorne mais tarde.</h3><br><h4>Horário de funcionamento: <br>" +
-                             "<table style='margin-left: 18%;'><tbody><tr class=\"K7Ltle\"><td class=\"SKNSIb\">Segunda-feira</td><td>18:00–22:45</td><br></tr><tr><td class=\"SKNSIb\">Terça-feira</td><td>18:00–23:00</td></tr><tr><td class=\"SKNSIb\">Quarta-feira</td><td>18:00–23:30</td></tr><tr><td class=\"SKNSIb\">Quinta-feira</td><td>18:00–23:30</td></tr><tr><td class=\"SKNSIb\">Sexta-feira</td><td>18:00–23:45</td></tr><tr><td class=\"SKNSIb\">Sábado</td><td>18:00–23:59</td></tr><tr><td class=\"SKNSIb\">Domingo</td><td>20:45–23:00</td></tr></h4></tbody></table>",
-                         type: 'warning',
-                         confirmButtonColor: '#3085d6',
-                         confirmButtonText: 'Ok'
-                     });
-                 }
-            });
-        });
-    </script>
+    <!--<script type="text/javascript">
+
+    </script>-->
 
 </head>
 <body class="fadeIn">

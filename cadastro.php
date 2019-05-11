@@ -1,7 +1,7 @@
 <?php
     error_reporting(E_ALL);
     ini_set('display_errors', 1);
-    session_start();
+//    session_start();
     $key = uniqid(md5(rand()));
 
     require 'conexao.php';
@@ -45,8 +45,8 @@
 	<link href="//fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 	<link href="//fonts.googleapis.com/css?family=Raleway:400,500,600,700" rel="stylesheet">
 	<!-- scripts -->
-        <script src="js/sweetalert2.all.min.js"></script>
-        <script src="js/jquery.min.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/sweetalert2.all.min.js"></script>
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-132452994-1"></script>
         <script>
             window.dataLayer = window.dataLayer || [];

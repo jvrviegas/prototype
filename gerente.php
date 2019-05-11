@@ -1,6 +1,10 @@
 <?php
 $key = uniqid(md5(rand()));
 session_start();
+
+if($_SESSION['id'] != 1){
+    header("location:index.php");
+}
 ?>
 
 <!DOCTYPE html>
@@ -23,13 +27,17 @@ session_start();
     <script src="js/sweetalert2.all.min.js"></script>
     <script type="text/javascript">
         jQuery(document).ready(function ($) {
+            const audio = document.querySelector('audio');
             var controlePedidos = new Array();
             /* CHAMADA NO BOTÃO "ENCERRAR CONTA" PARA ENVIAR A REQUISIÇÃO DE ENCERRAR PEDIDO */
             $("#tbody_pedidos").on('click', '.btn_encerrar', function () {
                 var id_usuario = $(this).closest('tr').find('.id_usuario').text();
+                var valor_conta = $(this).closest('tr').find('.valor_conta').text();
+                var num_mesa = $(this).closest('tr').find('.num_mesa').text();
+                var tr = $(this).closest('tr');
                 Swal({
-                    title: "Deseja encerrar este pedido?",
-                    html: "<h2>ID: "+id_usuario+"</h2>",
+                    title: "Deseja encerrar esta comanda?",
+                    html: "<h2>ID Usuário: "+id_usuario+"</h2><h2>Mesa: "+num_mesa+"</h2><h2>Valor da conta: R$"+valor_conta+"</h2>",
                     type: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
@@ -46,17 +54,21 @@ session_start();
 
                             }
                         });
+                        var index = $.inArray(id_usuario, controlePedidos);
+                        console.log(index);
+                        controlePedidos.splice(index, 1);
                         Swal({
                             title: "Pedido encerrado com sucesso!",
                             type: 'success',
-                            showCancelButton: true,
-                            confirmButtonText: 'Ok'
+                            confirmButtonText: 'Ok',
+                            allowOutsideClick: false
                         }).then((result) => {
                             if(result.value){
-                                location.reload();
+                                tr.fadeOut(400, function (){
+                                    tr.remove();
+                                });
                             }
                         });
-                        setInterval("location.reload()", 5000);
                     }
                 });
             });
@@ -79,6 +91,7 @@ session_start();
                         });
                         $("#pedido").modal('show');
                         $(".modalLoading").modal('hide');
+                        $("#tbody_pedidos").find('#'+id_usuario+'').find('.new').html("");
                     }
                 });
             });
@@ -92,12 +105,34 @@ session_start();
                     data: 'opc=3',
                     dataType: 'json',
                     success: function (result) {
-                        if (!controlePedidos.includes(result.controle_pedido)) {
+                        console.log(controlePedidos);
+                        // if(controlePedidos.includes(result.controle_pedido)){
                             $.each(result, function (key, value) {
-                                $("#tbody_pedidos").append("<tr> <td>" + value.id_pedido + "</td> <td class='id_usuario'>" + value.id_usuario + "</td> <td>" + value.valor_conta + "</td> <td>" + value.status_pedido + "</td> <td> <button class='visualizar_pedido'>Visualizar pedido</button> </td> <td> <button class='btn_encerrar'>Encerrar conta</button> </td></tr>");
+                                if(controlePedidos.includes(value.id_usuario)) {
+                                    var user = value.id_usuario;
+                                    var valor = $("#tbody_pedidos").find('#' + user + '').find(".valor_conta");
+                                    var notify = $("#tbody_pedidos").find('#' + user + '').find(".new");
+                                    var valor_atual = $("#tbody_pedidos").find('#' + user + '').find(".valor_conta").text();
+                                    if (value.valor_conta > valor_atual) {
+                                        audio.play();
+                                        notify.html("<b>Novo</b>");
+                                        valor.html(value.valor_conta);
+                                    }
+                                }
+                                else if(!controlePedidos.includes(value.id_usuario)){
+                                    $("#tbody_pedidos").append("<tr id='"+value.id_usuario+"'> <td class='new'><b>Novo</b></td> <td>" + value.id_pedido + "</td> <td class='id_usuario'>" + value.id_usuario + "</td> <td class='num_mesa'>" + value.num_mesa + "</td> <td class='valor_conta'>" + value.valor_conta + "</td> <td>" + value.status_pedido + "</td> <td> <button class='visualizar_pedido'>Visualizar pedido</button> </td> <td> <button class='btn_encerrar'>Encerrar conta</button> </td></tr>");
+                                    audio.play();
+                                    controlePedidos.push(value.id_usuario);
+                                }
+                            });
+                        // }
+                        /*else if (!controlePedidos.includes(result.controle_pedido)) {
+                            audio.play();
+                            $.each(result, function (key, value) {
+                                $("#tbody_pedidos").append("<tr id='"+value.id_usuario+"'> <td class='new'><b>Novo</b></td> <td>" + value.id_pedido + "</td> <td class='id_usuario'>" + value.id_usuario + "</td> <td class='num_mesa'>" + value.num_mesa + "</td> <td class='valor_conta'>" + value.valor_conta + "</td> <td>" + value.status_pedido + "</td> <td> <button class='visualizar_pedido'>Visualizar pedido</button> </td> <td> <button class='btn_encerrar'>Encerrar conta</button> </td></tr>");
                             });
                             controlePedidos.push(result.controle_pedido);
-                        }
+                        }*/
                     }
                 });
             }
@@ -112,6 +147,7 @@ session_start();
     <meta charset="utf-8">
 </head>
 <body>
+<audio src="sound/definite.mp3"></audio>
 <!--header-section-starts-->
 <div class="header">
     <div class="container">
@@ -155,8 +191,10 @@ session_start();
                 <table id="pedidos_em_aberto" class="table">
                     <thead>
                     <tr>
+                        <th></th>
                         <th>ID Pedido</th>
                         <th>Usuário</th>
+                        <th>Mesa</th>
                         <th>Valor conta</th>
                         <th>Status pedido</th>
                         <th></th>

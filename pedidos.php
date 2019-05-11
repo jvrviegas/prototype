@@ -23,7 +23,7 @@ class Pedidos {
         se estiver aberto, calcular a soma de todos os produtos a serem adicionados e somar ao valor da coluna valor_conta;
         senão, incrementar o id_pedido e realizar uma nova inserção nas tabelas
      */
-    public function inserirPedido($id_usuario, $lista_cod, $itens_qtd) {
+    public function inserirPedido($id_usuario, $lista_cod, $itens_qtd, $num_mesa) {
         /* TRANSFORMA AS STRINGS EM ARRAYS */
         $lista_ids = explode(",", $lista_cod);
         $lista_qtd = explode(",", $itens_qtd);
@@ -44,9 +44,10 @@ class Pedidos {
                 $valor_total = $quantidade * $valor_unitario;
                 $registra_conta += $valor_total;
             }
-            $stmt_entry = $this->pdo->prepare("INSERT INTO tbl_vendas (id_pedido, id_usuario, valor_conta, status_pedido, data_abertura, data_encerramento) VALUES (:id_pedido, :id_usuario, :valor_conta, 'Em aberto', NOW(), NOW())");
+            $stmt_entry = $this->pdo->prepare("INSERT INTO tbl_vendas (id_pedido, id_usuario, num_mesa, valor_conta, status_pedido, data_abertura, data_encerramento) VALUES (:id_pedido, :id_usuario, :num_mesa, :valor_conta, 'Em aberto', NOW(), NOW())");
             $stmt_entry->bindValue(':id_pedido', $id_pedido);
             $stmt_entry->bindValue(':id_usuario', $id_usuario);
+            $stmt_entry->bindValue(':num_mesa', $num_mesa);
             $stmt_entry->bindValue(':valor_conta', $registra_conta);
             $stmt_entry->execute();
         }
@@ -66,7 +67,7 @@ class Pedidos {
                     $valor_total = $quantidade * $valor_unitario;
                     $att_conta += $valor_total;
                 }
-                $stmt_update = $this->pdo->prepare("UPDATE tbl_vendas SET valor_conta = valor_conta+'$att_conta', data_encerramento=NOW() WHERE id_pedido = '$id_pedido'");
+                $stmt_update = $this->pdo->prepare("UPDATE tbl_vendas SET valor_conta = valor_conta+'$att_conta', data_encerramento=NOW() WHERE id_usuario = '$id_usuario' AND id_pedido = '$id_pedido'");
                 $stmt_update->execute();
 
                 /* SENÃO, REALIZA UM NOVO REGISTRO NA TABELA COM UM NOVO ID */
@@ -82,9 +83,10 @@ class Pedidos {
                     $valor_total = $quantidade * $valor_unitario;
                     $registra_conta += $valor_total;
                 }
-                $stmt_entry = $this->pdo->prepare("INSERT INTO tbl_vendas (id_pedido, id_usuario, valor_conta, status_pedido, data_abertura, data_encerramento) VALUES (:id_pedido, :id_usuario, :valor_conta, 'Em aberto', NOW(), NOW())");
+                $stmt_entry = $this->pdo->prepare("INSERT INTO tbl_vendas (id_pedido, id_usuario, num_mesa, valor_conta, status_pedido, data_abertura, data_encerramento) VALUES (:id_pedido, :id_usuario, :num_mesa, :valor_conta, 'Em aberto', NOW(), NOW())");
                 $stmt_entry->bindValue(':id_pedido', $id_pedido);
                 $stmt_entry->bindValue(':id_usuario', $id_usuario);
+                $stmt_entry->bindValue(':num_mesa', $num_mesa);
                 $stmt_entry->bindValue(':valor_conta', $registra_conta);
                 $stmt_entry->execute();
             }
@@ -173,12 +175,13 @@ if (isset($_POST) && isset($_POST['opc'])) {
     /* TRABALHAR COM SWITCH CASE PARA REALIZAR AS OPERAÇÕES */
     switch ($opc) {
         case '1':
-            if (isset($_POST['lista_cod']) && isset($_POST['itens_qtd'])) {
+            if (isset($_POST['lista_cod']) && isset($_POST['itens_qtd']) && isset($_POST['num_mesa'])) {
                 $id_usuario = $_SESSION['id'];
                 $lista_cod = $_POST['lista_cod'];
                 $itens_qtd = $_POST['itens_qtd'];
+                $num_mesa = $_POST['num_mesa'];
                 $pedido = new Pedidos();
-                $pedido->inserirPedido($id_usuario, $lista_cod, $itens_qtd);
+                $pedido->inserirPedido($id_usuario, $lista_cod, $itens_qtd, $num_mesa);
             }
             break;
 

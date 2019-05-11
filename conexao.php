@@ -57,7 +57,12 @@ if (isset($_POST) && isset($_POST['usuario']) && isset($_POST['senha'])) {
     } else {
         $_SESSION['id'] = $select[0]['id_usuario'];
         $_SESSION['user'] = $select[0]['usuario'];
-        $mensagem = 1;
+
+        if($_SESSION['id'] == 1){
+            $mensagem = 2;
+        } else {
+            $mensagem = 1;
+        }
         echo json_encode($mensagem);
     }
 }
