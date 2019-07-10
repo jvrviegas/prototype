@@ -1,7 +1,6 @@
 jQuery(document).ready(function ($) {
     // Função para incremento do elemento 'quantidade'
     var num_mesa = JSON.parse(sessionStorage.getItem('num_mesa'));
-    console.log('Num mesa: '+num_mesa);
     var controle2sabores = 0;
     var itensCarrinho = [];
     var itensQtd = new Array();
@@ -12,7 +11,7 @@ jQuery(document).ready(function ($) {
     // Adiciona o ID e a quantidade do item nos vetores para consulta posteriormente
     $(".itemCarrinho").click(function (event) {
         var idProduto = $(this).attr('id');
-        if (idProduto > 0 && idProduto < 47 || idProduto == 75) {
+        if (idProduto > 0 && idProduto < 47 || idProduto > 74) {
             var qtdProduto = $(this).closest('div').find('input').val();
         } else if (idProduto > 46 && idProduto <= 74) {
             var qtdProduto = $(this).closest('tr').find('input').val();
@@ -33,7 +32,7 @@ jQuery(document).ready(function ($) {
             itensCarrinho.splice(index, 1);
             itensQtd.splice(index, 1);
             $(this).text("Adicionar");
-            if (idProduto > 0 && idProduto < 47 || idProduto == 75) {
+            if (idProduto > 0 && idProduto < 47 || idProduto > 74) {
                 var qtdProduto = $(this).closest('div').find('input').val(1);
             } else if (idProduto > 46 && idProduto <= 74) {
                 var qtdProduto = $(this).closest('tr').find('input').val(1);

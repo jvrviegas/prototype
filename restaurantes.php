@@ -7,7 +7,7 @@ class Restaurantes
 
     function __construct()
     {
-        $this->pdo = new PDO('mysql:host=localhost;dbname=pedefacil_db', 'root', 'p3d3f4c1l@db');
+        $this->pdo = new PDO('mysql:host=213.190.6.74;dbname=u945705568_db', 'u945705568_admin', 'p3d3f4c1l@db');
     }
 
     function consulta($id_restaurante){
@@ -19,9 +19,7 @@ class Restaurantes
     }
 }
 
-echo $_SESSION['id'].$_SESSION['user'];
-
-if(isset($_GET['id']) && isset($_GET['mesa'])){
+if(isset($_GET['id']) && isset($_GET['mesa']) && (isset($_SESSION['id']) && isset($_SESSION['user']))){
     $id_restaurante = $_GET['id'];
     $num_mesa = $_GET['mesa'];
     $consulta = new Restaurantes();
@@ -30,6 +28,5 @@ if(isset($_GET['id']) && isset($_GET['mesa'])){
         $pagina = $restaurante['link'];
         header("location:$pagina");
     }
-
 }
 ?>

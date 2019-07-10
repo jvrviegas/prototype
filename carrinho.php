@@ -18,7 +18,7 @@ function sanitizeString($str) {
 class Consulta{
     var $pdo;
     function __construct() {
-        $this->pdo = new PDO('mysql:host=localhost;dbname=pedefacil_db', 'root', 'p3d3f4c1l@db');
+        $this->pdo = new PDO('mysql:host=localhost;dbname=u945705568_db', 'u945705568_admin', 'p3d3f4c1l@db');
     }
     /* FUNÇÕES DE VENDA */
     public function consultaProduto($cod){

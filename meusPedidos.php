@@ -53,7 +53,48 @@ $key = uniqid(md5(rand()));
                         showCancelButton: true
                     });
                 });
-
+                $("#btn_cancelamento").click(function (){
+                    Swal({
+                        title: "Deseja cancelar algum item pedido?",
+                        type: 'warning',
+                        confirmButtonColor: '#3085d6',
+                        confirmButtonText: 'Sim',
+                        cancelButtonText: 'Não',
+                        showCancelButton: true
+                    }).then((result) => {
+                        if(result.value) {
+                            $.ajax({
+                                url: 'pedidos.php',
+                                type: "POST",
+                                data: "id_usuario="+id_usuario+"&&opc=5",
+                                dataType: "json",
+                                beforeSend: function () {
+                                    $(".modalLoading").modal('show');
+                                },
+                                success: function(result){
+                                    if(result == 1){
+                                        Swal({
+                                            title: "Solicitação enviada com sucesso!",
+                                            html: "<h4>Em instantes um garçom virá atendê-lo</h4>",
+                                            type: 'success',
+                                            confirmButtonColor: '#3085d6',
+                                            confirmButtonText: 'OK'
+                                        });
+                                    }
+                                    else if(result == 0){
+                                        Swal({
+                                            title: "Erro ao enviar solicitação",
+                                            html: "<h4>Por favor, tente novamente.</h4>",
+                                            type: 'error',
+                                            confirmButtonColor: '#3085d6',
+                                            confirmButtonText: 'OK'
+                                        });
+                                    }
+                                }
+                            });
+                        }
+                    });
+                });
             });
         </script>
 
@@ -115,8 +156,9 @@ $key = uniqid(md5(rand()));
                         </table>
                     </div>
                     <h4 style="font-weight: bold;">Valor da conta: <span id="valor_conta">0.00</span></h4>
-                    <br><button id="btn_encerrar">Encerrar conta</button>
-                    
+                    <button id="btn_encerrar" class="btn btn-info btn-pedidos">Encerrar conta</button>
+                    <button id="btn_cancelamento" class="btn btn-info btn-pedidos">Solicitar cancelamento de item</button>
+
                 </div>
 <!--                <div class="lista_pedidos">
                     <h3>Pedidos encerrados</h3>

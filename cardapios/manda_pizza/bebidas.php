@@ -23,7 +23,7 @@ foreach ($bebidas as $produto) {
                         </div>
                     </div>
                     <div class="pr-right">
-                        <?php if($produto['produto'] === "Água com gás" || $produto['produto'] === "Água sem gás") {?>
+                        <?php if($produto['produto'] === "Água com gás" || $produto['produto'] === "Água sem gás" || $produto['produto'] === "Cerveja Long Neck" || $produto['produto'] === "Heineken Long Neck" || $produto['produto'] === "Refrigerante 2,5L" || $produto['produto'] === "Sucos" || $produto['produto'] === "Refrigerante 1,5L") {?>
                             <button type='button' id='arrowDown' class='button numberArrow'
                                     onclick='this.parentNode.querySelector("[type=number]").stepDown();'>
                                 -

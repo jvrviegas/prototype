@@ -10,7 +10,7 @@ class Pedidos {
     var $pdo;
 
     function __construct() {
-        $this->pdo = new PDO('mysql:host=localhost;dbname=pedefacil_db', 'root', 'p3d3f4c1l@db');
+        $this->pdo = new PDO('mysql:host=213.190.6.74;dbname=u945705568_db', 'u945705568_admin', 'p3d3f4c1l@db');
     }
 
     /* FUNÇÃO PARA INSERÇÃO DO PEDIDO AO BANCO DE DADOS NA TBL_PEDIDOS - LÓGICA:
@@ -100,7 +100,7 @@ class Pedidos {
         $lista_qtd = explode(",", $itens_qtd);
 
         /* STRING SQL PARA PREPARAR A INSERÇÃO DOS DADOS */
-        $sql = "INSERT INTO tbl_pedidos (id_pedido, id_usuario, id_produto, nome_produto, quantidade, valor_unitario, valor_total, data, status_pedido) VALUES (:id_pedido, :id_usuario, :id_produto, :nome_produto, :quantidade, :valor_unitario, :valor_total, NOW(), 'Em aberto')";
+        $sql = "INSERT INTO tbl_pedidos (id_pedido, id_usuario, id_produto, categoria, nome_produto, quantidade, valor_unitario, valor_total, data, status_pedido) VALUES (:id_pedido, :id_usuario, :id_produto, :categoria, :nome_produto, :quantidade, :valor_unitario, :valor_total, NOW(), 'Em aberto')";
         /* ITERAÇÃO PARA ADICIONAR CADA PRODUTO EM UMA LINHA NA TABELA */
         $valor_conta = 0;
         $stmt = $this->pdo->prepare($sql);
@@ -108,6 +108,7 @@ class Pedidos {
             $quantidade = array_shift($lista_qtd);
             $produto = array_map("utf8_encode", $consulta->consultaProduto($id_produto));
             $nome_produto = $produto['produto'];
+            $categoria_produto  = $produto['categoria'];
             $valor_unitario = $produto['preco'];
             $valor_total = $quantidade * $valor_unitario;
             $valor_conta += $valor_total;
@@ -115,6 +116,7 @@ class Pedidos {
             $stmt->bindValue(':id_pedido', $id_pedido);
             $stmt->bindValue(':id_usuario', $id_usuario);
             $stmt->bindValue(':id_produto', $id_produto);
+            $stmt->bindValue(':categoria', $categoria_produto);
             $stmt->bindValue(':nome_produto', $nome_produto);
             $stmt->bindValue(':quantidade', $quantidade);
             $stmt->bindValue(':valor_unitario', $valor_unitario);
@@ -128,7 +130,7 @@ class Pedidos {
         $stmt = $this->pdo->prepare("SELECT * FROM tbl_pedidos WHERE id_usuario = '$id_usuario' AND status_pedido = 'Em aberto'");
         $stmt->bindValue(':id_usuario', $id_usuario);
         $stmt->execute();
-        $result= [];
+        $result = Array();
         while ($teste = $stmt->fetch(PDO::FETCH_ASSOC)) {
              array_push($result, $teste);
         }
@@ -158,6 +160,34 @@ class Pedidos {
         $stmt_tblpedidos->execute();
     }
 
+    public function solicitarCancelamento($id_usuario){
+        $sql = "UPDATE tbl_vendas SET solicitacao_cancelamento = '1' WHERE id_usuario = '$id_usuario' AND status_pedido = 'Em aberto'";
+        $stmt = $this->pdo->prepare($sql);
+        if($stmt->execute()){
+            return 1;
+        }
+        else{
+            return 0;
+        }
+
+    }
+
+    public function cancelarItem($cod_item, $id_pedido, $id_usuario){
+        $consulta = new Consulta();
+        $produto = $consulta->consultaProduto($cod_item);
+        $preco = $produto['preco'];
+        $sql = "DELETE FROM tbl_pedidos WHERE id_pedido = '$id_pedido' AND id_usuario = '$id_usuario' AND id_produto = '$cod_item' AND status_pedido = 'Em aberto'";
+        $sql2 = "UPDATE tbl_vendas SET solicitacao_cancelamento = '0', valor_conta = valor_conta - '$preco' WHERE id_pedido = '$id_pedido' AND id_usuario = '$id_usuario' AND status_pedido = 'Em aberto'";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt2 = $this->pdo->prepare($sql2);
+        if($stmt->execute() && $stmt2->execute()){
+            return 1;
+        }
+        else{
+            return 0;
+        }
+    }
+
 }
 
 /*
@@ -166,7 +196,8 @@ class Pedidos {
  * 2 -> EXIBIR PEDIDO (USUÁRIO)
  * 3 -> EXIBIR PEDIDO (GERENTE)
  * 4 -> ENCERRAR PEDIDO (GERENTE)
- * 5 -> ENCERRAR PEDIDO (USUÁRIO)
+ * 5 -> SOLICITAR CANCELAMENTO DE ITEM (USUÁRIO)
+ * 6 -> CANCELAR ITEM (GERENTE)
 
  */
 
@@ -222,7 +253,20 @@ if (isset($_POST) && isset($_POST['opc'])) {
                 $pedidos->encerrarPedido($_POST['id_usuario']);
             }
             break;
-
+        case '5':
+            if(isset($_POST['id_usuario'])){
+                $pedidos = new Pedidos();
+                $solicitacao = $pedidos->solicitarCancelamento($_POST['id_usuario']);
+                echo json_encode($solicitacao);
+            }
+            break;
+        case '6':
+            if(isset($_POST['id_usuario']) && isset($_POST['id_pedido']) && isset($_POST['id_produto'])){
+                $pedidos = new Pedidos();
+                $cancelamento = $pedidos->cancelarItem($_POST['id_produto'], $_POST['id_pedido'], $_POST['id_usuario']);
+                echo json_encode($cancelamento);
+            }
+            break;
         default:
             break;
     }

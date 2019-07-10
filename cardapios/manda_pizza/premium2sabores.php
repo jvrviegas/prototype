@@ -1,5 +1,5 @@
 <?php
-$categoria = "pizza_premium";
+$categoria = "pizza_premium_grande";
 $retorno = new Consulta();
 $pizzas_premium = $retorno->carregarProdutos($categoria);
 ?>

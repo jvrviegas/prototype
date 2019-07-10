@@ -1,5 +1,5 @@
 <?php
-$categoria = "pizza_premium";
+$categoria = "pizza_premium_grande";
 $retorno = new Consulta();
 $produtos = $retorno->carregarProdutos($categoria);
 ?>
@@ -16,8 +16,8 @@ $produtos = $retorno->carregarProdutos($categoria);
 
             <!-- Modal body -->
             <div class="modal-body" id="modal-body-carrinho">
-                <button class="btn btn-primary btn-sm" data-toggle="collapse" href="#collapsePizzaTradicional_modal">Pizzas Tradicionais</button>
-                <button class="btn btn-primary btn-sm" data-toggle="collapse" href="#collapsePizzaPremium_modal">Pizzas Premium</button>
+                <button class="btn btn-primary btn-sm" data-toggle="collapse" href="#collapsePizzaTradicional_modal">Pizzas Tradicionais - Grande</button>
+                <button class="btn btn-primary btn-sm" data-toggle="collapse" href="#collapsePizzaPremium_modal">Pizzas Premium  - Grande</button>
             </div>
 
             <div class="collapse fade" id="collapsePizzaTradicional_modal">

@@ -4339,3 +4339,15 @@ a.morebtn {
 	height: 95%;
 	overflow-y: auto;
 }
+
+.row h3{
+	margin-left: 150px;
+	padding-bottom: 10px;
+	font-size: 22px;
+}
+.row h4{
+	font-family: 'Times New Roman', sans-serif;
+}
+.row a{
+	font-weight: bold;
+}

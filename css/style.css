@@ -348,3 +348,31 @@ input[type="text"] {
         }
 
     /* fade in */
+
+#btn_start {
+    margin-top: 20px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.qr-code {
+    display: block;
+    position:relative;
+    left:50%;
+    transform: translate(-50%);
+}
+
+.mini-tutorial-qrcode {
+    height: 75px;
+    margin-top: 20px;
+    text-align: center;
+}
+.mini-tutorial-qrcode p {
+    float: left;
+    width: 200px;
+    margin-top: 15px;
+}
+.mini-tutorial-qrcode img {
+    float: right;
+}

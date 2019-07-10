@@ -1,147 +1,87 @@
 <?php
-$key = uniqid(md5(rand()));
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+//iniciar a sessão
 session_start();
+date_default_timezone_set('America/Fortaleza');
+$hora = date('H:i:s');
+
+$key = uniqid(md5(rand()));
+
 
 ?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
+    <!-- Meta tags -->
     <title>Pede Fácil - Iniciar</title>
-    <!--         CSS -->
-    <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900,200italic,300italic,400italic,600italic,700italic,900italic'
-          rel='stylesheet' type='text/css'>
-    <link href='//fonts.googleapis.com/css?family=Lobster+Two:400,400italic,700,700italic' rel='stylesheet'
-          type='text/css'>
-    <link href="css/base.css" rel="stylesheet">
-    <link href="css/fonts.css" rel="stylesheet">
+    <meta name="keywords" content="Pede Fácil"/>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="mobile-web-app-capable" content="yes">
+    <!-- stylesheets -->
     <link href="css/bootstrap-3.3.0.css" rel="stylesheet">
-    <link href="css/gerente.css?key=<?php echo $key; ?>" rel="stylesheet">
-    <!--         JAVASCRIPT -->
+    <link rel="shortcut icon" sizes="196x196" href="images/icon-196x196.png">
+    <link rel="stylesheet" href="css/font-awesome.css">
+    <link rel="stylesheet" href="css/iniciar.css?key=<?php echo $key ?>">
+    <!-- google fonts  -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Raleway:400,500,600,700" rel="stylesheet">
+    <!-- scripts -->
     <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/base.js"></script>
     <script src="js/bootstrap-3.3.0/bootstrap-3.3.0.min.js"></script>
     <script src="js/sweetalert2.all.min.js"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script src="https://www.googletagmanager.com/gtag/js?id=UA-132452994-1"></script>
+    <script src="js/index.js"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+
+        gtag('config', 'UA-132452994-1');
+    </script>
     <script type="text/javascript">
         jQuery(document).ready(function ($) {
-
+            $("#btn_start").click(function (){
+                location.replace("leitor_qr.php");
+            });
         });
     </script>
 
-    <!--         META TAGS -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <meta charset="utf-8">
 </head>
-<body id="main">
-<!--header-section-starts-->
-<div class="header">
-    <div class="container">
-        <div class="top-header">
-            <div class="logo">
-                <a href="index.php"><img src="images/logo-pincelada.png" style="width: 210px; height:70px;"
-                                         class="img-responsive" alt=""/></a>
+<body class="fadeIn">
+<div class="agile-login">
+    <div class="logo-text"></div>
+    <div class="wrapper">
+        <div class="w3ls-form">
+            <h3 style="text-align: center; font-size: 20px;">Aponte a câmera para o <span style="color:darkred;">QR Code</span> localizado na sua mesa</h3>
+            <img class="qr-code" src="images/qr_code.png">
+            <button id="btn_start" class="btn btn-block btn-info">ABRIR CÂMERA</button>
+            <div class="mini-tutorial-qrcode">
+                <p>Quer saber como ler o QR Code? <span style="color: darkred">Clique aqui</span></p>
+                <img src="images/qr_code.png">
             </div>
-            <div class="clearfix"></div>
         </div>
-    </div>
-    <div class="menu-bar">
-        <div class="container">
-            <div class="top-menu">
-                <ul>
-                    <li class="active"><a href="#">Pedidos</a></li>
-                    |
-                    <li><a href="#">Editar</a></li>
-                    |
-                    <li><img id="menu-logo" src="images/logo-manda-pizza.png" style="width:60px; height: 60px;"></li>
-                    |
-                    <li><a href="sobre.php">Sobre nós</a></li>
-                    |
-                    <li><a href="sair.php">Sair</a></li>
-                    <div class="clearfix"></div>
-                </ul>
-            </div>
 
-            <div class="clearfix"></div>
-        </div>
+        <!--		<div class="agile-icons">-->
+        <!--                    <a href="#"><span class="fa fa-facebook"> Entrar com o Facebook</span></a>-->
+        <!--		</div>-->
     </div>
-</div>
-<!--header-section-ends-->
-<!--content-section-starts-->
-
-<div class="special-offers-section">
-    <div class="container">
-        <button id="start">Iniciar</button>
-    </div>
-</div>
-<div class="clearfix"></div>
-
-</div>
-<!--content-section-ends-->
-<!--footer-section-starts-->
-<div class="footer">
-    <div class="container">
-        <p class="wow fadeInLeft" data-wow-delay="0.2s">&copy; 2019 Todos os direitos reservados | &nbsp;<a
-                href="https://contatostreamline.wixsite.com/pedefacil2" target="target_blank">Streamline
+    <br>
+    <div class="copyright">
+        <p>© Copyright 2019 <a href="https://contatostreamline.wixsite.com/pedefacil2" target="_blank">Streamline
                 Technologies</a></p>
     </div>
 </div>
-<!--footer-section-ends-->
-<script type="text/javascript">
-    $(document).ready(function () {
-        /*
-         var defaults = {
-         containerID: 'toTop', // fading element id
-         containerHoverID: 'toTopHover', // fading element hover id
-         scrollSpeed: 1200,
-         easingType: 'linear'
-         };
-         */
 
-        $().UItoTop({easingType: 'easeOutQuart'});
-
-    });
-</script>
-<a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
-
-
-<!--The Modal-->
-<div class="modal fade" id="pedido">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-
-            <!--Modal Header-->
-            <div class="modal-header">
-                <h4 class="modal-title">Pedido</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-
-            <!--Modal body-->
-            <div class="modal-body" id="modal-body-carrinho">
-                <div class="container table-responsive-sm">
-                    <table class="table" style="max-width: 940px;">
-                        <thead class="thead-dark">
-                        <tr>
-                            <th>Produto</th>
-                            <th>Quantidade</th>
-                            <th>Observação</th>
-                            <th></th>
-                        </tr>
-                        </thead>
-                        <tbody id="tabelaProdutos" style="text-align: left;">
-
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <!--Modal footer-->
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-            </div>
-
-        </div>
-    </div>
-</div>
-<div class="modalLoading"><!-- Place at bottom of page --></div>
 </body>
 </html>
+

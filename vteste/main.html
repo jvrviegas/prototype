@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+   
+    <title>Pede Fácil - Cardápio</title>
+</head>
+
+<body>
+     <header>
+            <nav class="navbar navbar-expand-md bg-nav-main navbar-dark">
+                    <a class="navbar-brand" href="main.html"><img src="./img/logo-pincelada.png" alt="Logo" class="logo-main"></a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                         <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                              <ul class="navbar-nav fonte1">
+                                    <li class="nav-item">
+                                        <a class="nav-link text-white text-uppercase" href="main.html">Cardápio</a>
+                                    </li>
+                                    
+                                    <li class="nav-item">
+                                        <a class="nav-link text-white text-uppercase" href="about-us.htm">Sobre Nós</a>
+                                    </li>    
+                                    <li class="nav-item">
+                                            <a class="nav-link text-white text-uppercase" href="#">Sair</a>
+                                    </li>  
+                              </ul>
+                        </div>  
+                </nav>                
+     </header>   
+   
+    <div class="container mb-2">
+            <h4 class="fonte1 my-4">Cardápio</h4>
+            <div class="row">
+                <div class="col-12">
+                    <a data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">
+                        <div class=" border border-white item-cardapio mb-2">
+                                <img src="./img/pizza1.jpg" alt="" class="img-cardapio">
+                                <p class="fonte2 mb-0 txt-item-cardapio text-dark">Pizzas</p>
+                        </div>
+                    </a>
+                 
+                    <div class="col-12  p-0">
+                        <div class="collapse multi-collapse" id="multiCollapseExample1">
+                             <div class="">
+                                 <div class="row d-flex justify-content-center pb-4">
+                                     <div class="d-flex justify-content-center col-6">
+                                            <button type="button" class="btn btn-primary rounded-0 fonte1 txt-btn text-uppercase col-12" data-toggle="modal" data-target="#modalPizzaUnica">um sabor</button>
+                                     </div>
+
+                                        <div class="d-flex justify-content-center col-6" >
+                                                <button type="button" class="btn btn-primary rounded-0 fonte1 txt-btn  text-uppercase col-12" data-toggle="modal" data-target="#modalPizzaMetade">dois sabores</button>
+                                        </div>                                       
+
+                                 </div>
+                                 <div class="modal fade" id="modalPizzaUnica" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                          <div class="modal-content">
+                                            <div class="modal-header">                                      
+                                              
+                                              <div class="mt-4">
+                                                    <h5 class="font-weight-bold fonte1">Pizzas Tradicionais</h5>
+                                                    <div>
+                                                        <div class="row">
+                                                                <div class="col-8">
+                                                                        <p class="fonte2 font-uppercase font-weight-bold m-0">Calabresa</p>
+                                                                        <p class="fonte1 txt-btn">Molho de tomate, mussarela, calabresa, cebola, azeitona e orégano.</p>                                                                
+                                                                </div>
+                                                                <div class="col-4 p-0">
+                                                                    <p class="fonte1 txt-pre-pizza text-right font-weight-bold m-0"> R$ 26,99</p> 
+                                                                                                                                       
+                                                                </div>
+                                                        </div>
+                                                        <div class="row">
+                                                                <div class="col-8">
+                                                                        <p class="fonte2 font-uppercase font-weight-bold m-0">Mussarela</p>
+                                                                        <p class="fonte1 txt-btn">Molho de tomate, mussarela, tomate, concasse e orégano.</p>                                                                
+                                                                </div>
+                                                                <div class="col-4 p-0">
+                                                                    <p class="fonte1 txt-pre-pizza text-right font-weight-bold m-0"> R$ 26,99</p>                                                                    
+                                                                </div>
+                                                        </div>
+                                                        <div class="row">
+                                                                <div class="col-8">
+                                                                        <p class="fonte2 font-uppercase font-weight-bold m-0">Portuguesa</p>
+                                                                        <p class="fonte1 txt-btn">Molho de tomate, mussarela, presunto, ovos, cebola, pimentão, azeitonas e orégano.</p>                                                                
+                                                                </div>
+                                                                <div class="col-4 p-0">
+                                                                    <p class="fonte1 txt-pre-pizza text-right font-weight-bold m-0"> R$ 26,99</p>                                                                    
+                                                                </div>
+                                                        </div>
+                                                        
+                                                    </div>
+                                                    <h5 class="font-weight-bold fonte1">Pizzas Premium</h5>
+                                                    <div >
+                                                        <div class="row">
+                                                                <div class="col-8">
+                                                                        <p class="fonte2 font-uppercase font-weight-bold m-0">Quatro Queijos</p>
+                                                                        <p class="fonte1 txt-btn">Molho de tomate, mussarela, provolone, catupiry, parmesão e orégano.</p>                                                                
+                                                                </div>
+                                                                <div class="col-4 p-0">
+                                                                    <p class="fonte1 txt-pre-pizza text-right font-weight-bold m-0"> R$ 36,99</p>
+                                                                    
+                                                                </div>
+                                                        </div>
+                                                        <div class="row">
+                                                                <div class="col-8">
+                                                                        <p class="fonte2 font-uppercase font-weight-bold m-0">Lombo Defumado</p>
+                                                                        <p class="fonte1 txt-btn">Mussarela, lombinho defumado, queijo gouda, cebola, ovo de codorna, orégano.</p>                                                                
+                                                                </div>
+                                                                <div class="col-4 p-0">
+                                                                    <p class="fonte1 txt-pre-pizza text-right font-weight-bold m-0"> R$ 36,99</p>
+                                                                    
+                                                                </div>
+                                                        </div>
+                                                            
+
+                                                            
+                                                    </div>
+                                                   
+                                              </div>
+                                              <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                                                    <span aria-hidden="true">&times;</span>
+                                                  </button>
+                                            </div>
+                                            
+                                            <!-- <div class="modal-footer">
+                                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                                              <button type="button" class="btn btn-primary">Salvar mudanças</button>
+                                            </div> -->
+                                          </div>
+                                        </div>
+                                </div>
+                                <div class="modal fade " id="modalPizzaMetade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                          <div class="modal-content">
+                                            <div class="modal-header">                                      
+                                              
+                                              <div class="mt-4">
+                                                    <h5 class="font-weight-bold fonte1">Pizzas Tradicionais</h5>
+                                                    <div>
+                                                        <div class="row">
+                                                                <div class="col-8">
+                                                                        <p class="fonte2 font-uppercase font-weight-bold m-0">Calabresa</p>
+                                                                        <p class="fonte1 txt-btn">Molho de tomate, mussarela, calabresa, cebola, azeitona e orégano.</p>                                                                
+                                                                </div>
+                                                                <div class="col-4 p-0">
+                                                                    <p class="fonte1 txt-pre-pizza text-right font-weight-bold m-0"> R$ 13,50</p>      
+                                                                    <label class="control control-checkbox d-flex justify-content-center mt-3">                                                                
+                                                                            <input type="checkbox"  />
+                                                                            <div class="control_indicator"></div>
+                                                                    </label>                                                              
+                                                                </div>
+                                                        </div>
+                                                        <div class="row">
+                                                                <div class="col-8">
+                                                                        <p class="fonte2 font-uppercase font-weight-bold m-0">Mussarela</p>
+                                                                        <p class="fonte1 txt-btn">Molho de tomate, mussarela, tomate, concasse e orégano.</p>                                                                
+                                                                </div>
+                                                                <div class="col-4 p-0">
+                                                                    <p class="fonte1 txt-pre-pizza text-right font-weight-bold m-0"> R$ 13,50</p> 
+                                                                    <label class="control control-checkbox d-flex justify-content-center mt-3">                                                                
+                                                                            <input type="checkbox"  />
+                                                                            <div class="control_indicator"></div>
+                                                                    </label>                                                                    
+                                                                </div>
+                                                        </div>
+                                                        <div class="row">
+                                                                <div class="col-8">
+                                                                        <p class="fonte2 font-uppercase font-weight-bold m-0">Portuguesa</p>
+                                                                        <p class="fonte1 txt-btn">Molho de tomate, mussarela, presunto, ovos, cebola, pimentão, azeitonas e orégano.</p>                                                                
+                                                                </div>
+                                                                <div class="col-4 p-0">
+                                                                    <p class="fonte1 txt-pre-pizza text-right font-weight-bold m-0"> R$ 13,50</p>
+                                                                    <label class="control control-checkbox d-flex justify-content-center mt-3">                                                                
+                                                                            <input type="checkbox"  />
+                                                                            <div class="control_indicator"></div>
+                                                                    </label>                                                                     
+                                                                </div>
+                                                        </div>
+                                                        
+                                                    </div>
+                                                    <h5 class="font-weight-bold fonte1">Pizzas Premium</h5>
+                                                    <div >
+                                                        <div class="row">
+                                                                <div class="col-8">
+                                                                        <p class="fonte2 font-uppercase font-weight-bold m-0">Quatro Queijos</p>
+                                                                        <p class="fonte1 txt-btn">Molho de tomate, mussarela, provolone, catupiry, parmesão e orégano.</p>                                                                
+                                                                </div>
+                                                                <div class="col-4 p-0">
+                                                                    <p class="fonte1 txt-pre-pizza text-right font-weight-bold m-0"> R$ 18,50</p>
+                                                                    <label class="control control-checkbox d-flex justify-content-center mt-3">                                                                
+                                                                            <input type="checkbox"  />
+                                                                            <div class="control_indicator"></div>
+                                                                    </label> 
+                                                                </div>
+                                                        </div>
+                                                        <div class="row">
+                                                                <div class="col-8">
+                                                                        <p class="fonte2 font-uppercase font-weight-bold m-0">Lombo Defumado</p>
+                                                                        <p class="fonte1 txt-btn">Mussarela, lombinho defumado, queijo gouda, cebola, ovo de codorna, orégano.</p>                                                                
+                                                                </div>
+                                                                <div class="col-4 p-0">
+                                                                    <p class="fonte1 txt-pre-pizza text-right font-weight-bold m-0"> R$ 18,50</p>
+                                                                    <label class="control control-checkbox d-flex justify-content-center mt-3">                                                                
+                                                                            <input type="checkbox"  />
+                                                                            <div class="control_indicator"></div>
+                                                                    </label> 
+                                                                </div>
+                                                        </div>                                                    
+
+                                                            
+                                                    </div>
+                                                   
+                                              </div>
+                                              <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                                                    <span aria-hidden="true">&times;</span>
+                                                  </button>
+                                            </div>
+                                            
+                                            <!-- <div class="modal-footer">
+                                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                                              <button type="button" class="btn btn-primary">Salvar mudanças</button>
+                                            </div> -->
+                                          </div>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+                <div class="col-12">
+                        <a  href="#" id="massas">
+                                <div class=" border border-white item-cardapio mb-2">
+                                        <img src="./img/pasta1.jpeg" alt="" class="img-cardapio">
+                                        <p class="fonte2 mb-0 txt-item-cardapio text-dark">Massas</p>
+                                </div>
+                        </a>
+
+                        <div class="modal fade" id="modalMassas" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                            <div class="mt-4">
+                                                    <h5 class="font-weight-bold fonte1">Massas Tradicionais</h5>
+                                                    <div>
+                                                        <div class="row">
+                                                                <div class="col-8">
+                                                                        <p class="fonte2 font-uppercase font-weight-bold m-0">Espaguete a Bolonhesa</p>
+                                                                        <p class="fonte1 txt-btn">Espaguete, molho de tomate, carne moída, manjericão e parmesão.</p>                                                                
+                                                                </div>
+                                                                <div class="col-4 p-0">
+                                                                    <p class="fonte1 txt-pre-pizza text-right font-weight-bold m-0"> R$ 14,99</p>     
+                                                                                                                                 
+                                                                </div>
+                                                        </div>
+                                                        <div class="row">
+                                                                <div class="col-8">
+                                                                        <p class="fonte2 font-uppercase font-weight-bold m-0">Espaguete de Calabresa</p>
+                                                                        <p class="fonte1 txt-btn">Espaguete, molho de tomate, calabresa, manjericão e parmesão.</p>                                                                
+                                                                </div>
+                                                                <div class="col-4 p-0">
+                                                                    <p class="fonte1 txt-pre-pizza text-right font-weight-bold m-0"> R$ 14,99</p>                                                                                                                                        
+                                                                </div>
+                                                        </div>
+                                                        <div class="row">
+                                                                <div class="col-8">
+                                                                        <p class="fonte2 font-uppercase font-weight-bold m-0">Espaguete de Frango</p>
+                                                                        <p class="fonte1 txt-btn">Espaguete, molho de tomate, frango cremoso desfiado, manjericão e parmesão.</p>                                                                
+                                                                </div>
+                                                                <div class="col-4 p-0">
+                                                                    <p class="fonte1 txt-pre-pizza text-right font-weight-bold m-0"> R$ 14,99</p>
+                                                                                                                                        
+                                                                </div>
+                                                        </div>
+                                                        
+                                                    </div>
+                                                    <h5 class="font-weight-bold fonte1">Massas Premium</h5>
+                                                    <div >
+                                                        <div class="row">
+                                                                <div class="col-8">
+                                                                        <p class="fonte2 font-uppercase font-weight-bold m-0">Espaguete Pomodoro</p>
+                                                                        <p class="fonte1 txt-btn">Espaguete, molho de tomate, champignon, manjericão e parmesão.</p>  
+                                                                                                                                       
+                                                                </div>
+                                                                <div class="col-4 p-0">
+                                                                    <p class="fonte1 txt-pre-pizza text-right font-weight-bold m-0"> R$ 22,99</p>
+                                                                     
+                                                                </div>
+                                                        </div>
+                                                        <div class="row">
+                                                                <div class="col-8">
+                                                                        <p class="fonte2 font-uppercase font-weight-bold m-0">Espaguete de Filé</p>
+                                                                        <p class="fonte1 txt-btn">Espaguete, molho de tomate, filé em cubos, manjericão e parmesão.</p>                                                                
+                                                                </div>
+                                                                <div class="col-4 p-0">
+                                                                    <p class="fonte1 txt-pre-pizza text-right font-weight-bold m-0"> R$ 22,99</p>
+                                                                   
+                                                                </div>
+                                                        </div> 
+                                                    </div>
+                                                   
+                                              </div>
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                                        <span aria-hidden="true">&times;</span>
+                                      </button>
+                                    </div>
+                                    
+                                    <!-- <div class="modal-footer">
+                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                                      <button type="button" class="btn btn-primary">Salvar mudanças</button>
+                                    </div> -->
+                                  </div>
+                                </div>
+                        </div>
+                        
+                </div>
+                <div class="col-12">
+                        <a  href="#" id="bebidas" >
+                                <div class=" border border-white item-cardapio mb-2">
+                                        <img src="./img/bebidas1.jpeg" alt="" class="img-cardapio">
+                                        <p class="fonte2 mb-0 txt-item-cardapio text-dark">Bebidas</p>
+                                </div>
+                        </a>
+
+                        <div class="modal fade" id="modalBebidas" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                            <div class="mt-4 col-12">
+                                                    <h5 class="font-weight-bold fonte1">Bebidas</h5>
+                                                    <div class="">
+                                                        <div class="row ">
+                                                                <div class="col-9">
+                                                                        <p class="fonte2 font-uppercase font-weight-bold m-0">Refrigerante Lata</p>
+                                                                                                                                       
+                                                                </div>
+                                                                <div class="col-3 p-0">
+                                                                    <p class="fonte1 txt-pre-pizza text-right font-weight-bold m-0"> R$ 4,99</p>                                                                                                                                    
+                                                                </div>
+                                                        </div>
+                                                        <div class="row">
+                                                                <div class="col-9">
+                                                                        <p class="fonte2 font-uppercase font-weight-bold m-0">Refrigerante 1L</p>
+                                                                                                                                       
+                                                                </div>
+                                                                <div class="col-3 p-0">
+                                                                    <p class="fonte1 txt-pre-pizza text-right font-weight-bold m-0"> R$ 6,99</p>                                                                                                                                    
+                                                                </div>
+                                                        </div>
+                                                        <div class="row">
+                                                                <div class="col-9">
+                                                                        <p class="fonte2 font-uppercase font-weight-bold m-0">Refrigerante 2L</p>
+                                                                                                                                       
+                                                                </div>
+                                                                <div class="col-3 p-0">
+                                                                    <p class="fonte1 txt-pre-pizza text-right font-weight-bold m-0"> R$ 9,99</p>                                                                                                                                    
+                                                                </div>
+                                                        </div>
+                                                        <div class="row">
+                                                                <div class="col-9">
+                                                                        <p class="fonte2 font-uppercase font-weight-bold m-0">Sucos</p>
+                                                                                                                                       
+                                                                </div>
+                                                                <div class="col-3 p-0">
+                                                                    <p class="fonte1 txt-pre-pizza text-right font-weight-bold m-0"> R$ 4,99</p>                                                                                                                                    
+                                                                </div>
+                                                        </div>                                                       
+                                                    </div>                                                   
+                                              </div>
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                                        <span aria-hidden="true">&times;</span>
+                                      </button>
+                                    </div>
+                                    
+                                    <!-- <div class="modal-footer">
+                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                                      <button type="button" class="btn btn-primary">Salvar mudanças</button>
+                                    </div> -->
+                                  </div>
+                                </div>
+                        </div>
+                        
+                </div>
+            </div>
+    </div>
+    
+    
+    <script>
+    $("#massas").click(function(){
+        $("#modalMassas").modal();
+    });
+    $("#bebidas").click(function(){
+        $("#modalBebidas").modal();
+    });
+    </script>
+
+</body>    
+</html>
